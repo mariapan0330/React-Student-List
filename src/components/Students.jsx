@@ -102,12 +102,8 @@ export default class Students extends Component {
     render() {
         return (
             <>
-            <form onSubmit={this.handleLastNameSubmit}>
-                <input className='btn btn-success mt-3' type='submit' value='Toggle Last Names' />
-            </form>
-            <form onSubmit={this.handleIdSubmit}>
-                <input type="submit" className="btn btn-outline-success mt-3" value='Toggle Ids' />
-            </form>
+            <button onClick={this.handleLastNameSubmit} className='btn btn-success mt-3 me-3'>Toggle Last Names</button>
+            <button onClick={this.handleIdSubmit} className='btn btn-outline-success mt-3'>Toggle Ids</button>
             <table className="table table-dark table-striped mt-3">
                 <thead>
                     <tr>
