@@ -3,12 +3,12 @@ import Students from './components/Students.jsx'
 function App() {
     return (
         <>
-            <nav class="navbar navbar-light bg-warning">
-                <div class="container-fluid">
-                    <span class="navbar-brand mb-0 h1">Kekambas-96</span>
+            <nav className="navbar navbar-light bg-warning">
+                <div className="container-fluid">
+                    <span className="navbar-brand mb-0 h1">Kekambas-96</span>
                 </div>
             </nav>
-            <div class="container">
+            <div className="container">
                 <Students /> {/* this is a class */}
             </div>
             
