@@ -27,24 +27,23 @@ export default class Students extends Component {
     }
 
 
-    componentDidUpdate(prevProps, prevState){ // !!! This did not work !!!
+    componentDidUpdate(prevProps, prevState){
         // this should render when the state changes
-        if (prevState.lastNamesShown !== this.state.lastNamesShown){
-            console.log('COMP UPDATE: lastNames is true');
+        if (prevState.lastNamesShown === false && this.state.lastNamesShown === true){
+            console.log(`COMP UPDATE: lastNames is ${this.state.lastNamesShown}`);
             fetch('https://kekambas-bs.herokuapp.com/kekambas')
             .then(res => res.json())
             .then(data => {
                 let fullNames = []
                 for (let x of data){
-                    fullNames.push(x.first_name)
+                    fullNames.push(`${x.first_name} ${x.last_name}`)
                 }
                 console.log('COMP UPDATE: ',fullNames);
                 this.setState({names: fullNames})
             })
-        } 
-        // else if (prevState.lastNamesShown === true && this.state.lastNamesShown === false){
-        //     this.componentDidMount()
-        // }
+        } else if (prevState.lastNamesShown === true && this.state.lastNamesShown === false){
+            this.componentDidMount()
+        }
 
     }
 
@@ -52,11 +51,9 @@ export default class Students extends Component {
         e.preventDefault(); 
         if (this.state.lastNamesShown === false) {
             console.log('HANDLE: was false now true');
-            this.state.lastNamesShown = true
-            this.setState({lastNamesShown: true}) // this is not behaving the way i anticipated.
+            this.setState({lastNamesShown: true})
         } else {
             console.log('HANDLE: was true now false');
-            this.state.lastNamesShown = false
             this.setState({lastNamesShown: false})
         }
         console.log(`HANDLE: clicked. lastNamesShown = ${this.state.lastNamesShown}`)
@@ -67,7 +64,7 @@ export default class Students extends Component {
         return (
             <>
             <form onSubmit={this.handleLastNameSubmit}>
-                <input className='btn btn-success mt-3' type='submit' value='Show Last Names' />
+                <input className='btn btn-success mt-3' type='submit' value='Toggle Last Names' />
             </form>
             <table className="table table-dark table-striped mt-3">
                 <thead>
